@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+import "session/rpc_create_session.proto";
+import "session/rpc_extend_session.proto";
+import "session/rpc_get_session.proto";
+import "session/rpc_invalidate_session.proto";
+import "session/rpc_verify_session.proto";
+
+option go_package = "github.com/Streamfair/streamfair_session_svc/pb";
+
+service IdentityProvider {
+    // Sessions
+    rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/create_session"
+            body: "*"
+        };
+    }
+
+    rpc ExtendSession(ExtendSessionRequest) returns (ExtendSessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/extend_session"
+            body: "*"
+        };
+    }
+
+    rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/get_session"
+            body: "*"
+        };
+    }
+
+    rpc InvalidateSession(InvalidateSessionRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/invalidate_session"
+        };
+    }
+
+    rpc VerifySession(VerifySessionRequest) returns (VerifySessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/verify_session"
+            body: "*"
+        };
+    }
+}

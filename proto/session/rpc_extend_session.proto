@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "session/session.proto";
+
+option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
+
+message ExtendSessionRequest {
+    Uuid id = 1;
+    google.protobuf.Timestamp expires_at = 2;
+}
+
+message ExtendSessionResponse {
+    Session session = 1;
+}

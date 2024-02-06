@@ -1,0 +1,58 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: streamfair_session_service_ci
+
+defaults:
+  run:
+    working-directory: ./
+
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      APP_DB_SOURCE_SESSION_SERVICE: ${{ secrets.DB_SOURCE_SESSION_SERVICE }}
+      APP_HTTP_SERVER_ADDRESS_SESSION_SERVICE: ${{ secrets.HTTP_SERVER_ADDRESS_SESSION_SERVICE }}
+      APP_GRPC_SERVER_ADDRESS_SESSION_SERVICE: ${{ secrets.GRPC_SERVER_ADDRESS_SESSION_SERVICE }}
+      APP_TOKEN_SYMMETRIC_KEY: ${{ secrets.TOKEN_SYMMETRIC_KEY }}
+      APP_ACCESS_TOKEN_DURATION: ${{ secrets.ACCESS_TOKEN_DURATION }}
+      APP_REFRESH_TOKEN_DURATION: ${{ secrets.REFRESH_TOKEN_DURATION }}
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: streamfair_session_service_db
+        ports:
+        - 5442:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.6'
+
+    - name: Install golang-migrate
+      run: |
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64.tar.gz | tar xvz
+        sudo mv migrate /usr/bin/migrate
+        which migrate
+
+    - name: Run migrations
+      run: make migrateup
+
+    - name: Test
+      run: make test

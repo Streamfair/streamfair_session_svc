@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pb;
+
+import "session/session.proto";
+
+option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
+
+message InvalidateSessionRequest {
+    Uuid id = 1;
+}

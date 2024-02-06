@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "session/session.proto";
+
+option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
+
+message CreateSessionRequest {
+    Uuid id = 1;
+    string user_name = 2;
+    string refresh_token = 3;
+    string user_agent = 4;
+    string client_ip = 5;
+    bool is_blocked = 6;
+    google.protobuf.Timestamp expires_at = 7;
+}
+
+message CreateSessionResponse {
+    Session session = 1;
+}
