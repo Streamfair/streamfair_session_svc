@@ -32,7 +32,7 @@ createmigration:
 
 migrateup migrateup1 migratedown migratedown1:
 	@echo "Migrating..."
-	migrate -path db/migration -database "postgresql://root:${DB_PASSWORD}@${DB_HOST}:${HTTP_PORT}/${DB_NAME}?sslmode=disable" -verbose $(if $(filter migrateup1 migratedown1,$@),$(subst migrate,,$@),) $(if $(filter migrateup migratedown,$@),up,down) $(if $(filter migrateup1 migratedown1,$@),1,)
+	migrate -path db/migration -database "postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${HTTP_PORT}/${DB_NAME}?sslmode=disable" -verbose $(if $(filter migrateup1 migratedown1,$@),$(subst migrate,,$@),) $(if $(filter migrateup migratedown,$@),up,down) $(if $(filter migrateup1 migratedown1,$@),1,)
 
 dbclean: migratedown migrateup
 	clear
