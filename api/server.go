@@ -40,11 +40,6 @@ func (server *Server) setupRouter() {
 
 	router.GET("/readiness", server.readinessCheck)
 
-	// router.POST("/users/login", server.loginUser)
-
-	// for later use
-	// authRoutes := router.Group("/").Use(authMiddleware(server.localTokenMaker))
-
 	server.router = router
 }
 
@@ -70,3 +65,11 @@ func errorResponse(err error) gin.H {
 		return gin.H{"error": err.Error()}
 	}
 }
+
+
+// func (server *Server) RunGinServer(config util.Config, store db.Store) {
+// 	err := server.StartServer(config.HttpServerAddress)
+// 	if err != nil {
+// 		fmt.Fprintf(os.Stderr, "server: error while starting server: %v\n", err)
+// 	}
+// }

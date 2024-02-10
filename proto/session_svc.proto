@@ -13,7 +13,7 @@ import "session/rpc_verify_session.proto";
 
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb";
 
-service SessionManagementService {
+service SessionService {
     // Sessions
     rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {
         option (google.api.http) = {

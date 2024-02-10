@@ -16,10 +16,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// SessionManagementServiceClient is the client API for SessionManagementService service.
+// SessionServiceClient is the client API for SessionService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SessionManagementServiceClient interface {
+type SessionServiceClient interface {
 	// Sessions
 	CreateSession(ctx context.Context, in *session.CreateSessionRequest, opts ...grpc.CallOption) (*session.CreateSessionResponse, error)
 	ExtendSession(ctx context.Context, in *session.ExtendSessionRequest, opts ...grpc.CallOption) (*session.ExtendSessionResponse, error)
@@ -28,221 +28,220 @@ type SessionManagementServiceClient interface {
 	VerifySession(ctx context.Context, in *session.VerifySessionRequest, opts ...grpc.CallOption) (*session.VerifySessionResponse, error)
 }
 
-type sessionManagementServiceClient struct {
+type sessionServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSessionManagementServiceClient(cc grpc.ClientConnInterface) SessionManagementServiceClient {
-	return &sessionManagementServiceClient{cc}
+func NewSessionServiceClient(cc grpc.ClientConnInterface) SessionServiceClient {
+	return &sessionServiceClient{cc}
 }
 
-func (c *sessionManagementServiceClient) CreateSession(ctx context.Context, in *session.CreateSessionRequest, opts ...grpc.CallOption) (*session.CreateSessionResponse, error) {
+func (c *sessionServiceClient) CreateSession(ctx context.Context, in *session.CreateSessionRequest, opts ...grpc.CallOption) (*session.CreateSessionResponse, error) {
 	out := new(session.CreateSessionResponse)
-	err := c.cc.Invoke(ctx, "/pb.SessionManagementService/CreateSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SessionService/CreateSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionManagementServiceClient) ExtendSession(ctx context.Context, in *session.ExtendSessionRequest, opts ...grpc.CallOption) (*session.ExtendSessionResponse, error) {
+func (c *sessionServiceClient) ExtendSession(ctx context.Context, in *session.ExtendSessionRequest, opts ...grpc.CallOption) (*session.ExtendSessionResponse, error) {
 	out := new(session.ExtendSessionResponse)
-	err := c.cc.Invoke(ctx, "/pb.SessionManagementService/ExtendSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SessionService/ExtendSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionManagementServiceClient) GetSession(ctx context.Context, in *session.GetSessionRequest, opts ...grpc.CallOption) (*session.GetSessionResponse, error) {
+func (c *sessionServiceClient) GetSession(ctx context.Context, in *session.GetSessionRequest, opts ...grpc.CallOption) (*session.GetSessionResponse, error) {
 	out := new(session.GetSessionResponse)
-	err := c.cc.Invoke(ctx, "/pb.SessionManagementService/GetSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SessionService/GetSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionManagementServiceClient) InvalidateSession(ctx context.Context, in *session.InvalidateSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) InvalidateSession(ctx context.Context, in *session.InvalidateSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pb.SessionManagementService/InvalidateSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SessionService/InvalidateSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionManagementServiceClient) VerifySession(ctx context.Context, in *session.VerifySessionRequest, opts ...grpc.CallOption) (*session.VerifySessionResponse, error) {
+func (c *sessionServiceClient) VerifySession(ctx context.Context, in *session.VerifySessionRequest, opts ...grpc.CallOption) (*session.VerifySessionResponse, error) {
 	out := new(session.VerifySessionResponse)
-	err := c.cc.Invoke(ctx, "/pb.SessionManagementService/VerifySession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SessionService/VerifySession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SessionManagementServiceServer is the server API for SessionManagementService service.
-// All implementations must embed UnimplementedSessionManagementServiceServer
+// SessionServiceServer is the server API for SessionService service.
+// All implementations must embed UnimplementedSessionServiceServer
 // for forward compatibility
-type SessionManagementServiceServer interface {
+type SessionServiceServer interface {
 	// Sessions
 	CreateSession(context.Context, *session.CreateSessionRequest) (*session.CreateSessionResponse, error)
 	ExtendSession(context.Context, *session.ExtendSessionRequest) (*session.ExtendSessionResponse, error)
 	GetSession(context.Context, *session.GetSessionRequest) (*session.GetSessionResponse, error)
 	InvalidateSession(context.Context, *session.InvalidateSessionRequest) (*emptypb.Empty, error)
 	VerifySession(context.Context, *session.VerifySessionRequest) (*session.VerifySessionResponse, error)
-	mustEmbedUnimplementedSessionManagementServiceServer()
+	mustEmbedUnimplementedSessionServiceServer()
 }
 
-// UnimplementedSessionManagementServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedSessionManagementServiceServer struct {
+// UnimplementedSessionServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSessionServiceServer struct {
 }
 
-func (UnimplementedSessionManagementServiceServer) CreateSession(context.Context, *session.CreateSessionRequest) (*session.CreateSessionResponse, error) {
+func (UnimplementedSessionServiceServer) CreateSession(context.Context, *session.CreateSessionRequest) (*session.CreateSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSession not implemented")
 }
-func (UnimplementedSessionManagementServiceServer) ExtendSession(context.Context, *session.ExtendSessionRequest) (*session.ExtendSessionResponse, error) {
+func (UnimplementedSessionServiceServer) ExtendSession(context.Context, *session.ExtendSessionRequest) (*session.ExtendSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExtendSession not implemented")
 }
-func (UnimplementedSessionManagementServiceServer) GetSession(context.Context, *session.GetSessionRequest) (*session.GetSessionResponse, error) {
+func (UnimplementedSessionServiceServer) GetSession(context.Context, *session.GetSessionRequest) (*session.GetSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
-func (UnimplementedSessionManagementServiceServer) InvalidateSession(context.Context, *session.InvalidateSessionRequest) (*emptypb.Empty, error) {
+func (UnimplementedSessionServiceServer) InvalidateSession(context.Context, *session.InvalidateSessionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InvalidateSession not implemented")
 }
-func (UnimplementedSessionManagementServiceServer) VerifySession(context.Context, *session.VerifySessionRequest) (*session.VerifySessionResponse, error) {
+func (UnimplementedSessionServiceServer) VerifySession(context.Context, *session.VerifySessionRequest) (*session.VerifySessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifySession not implemented")
 }
-func (UnimplementedSessionManagementServiceServer) mustEmbedUnimplementedSessionManagementServiceServer() {
-}
+func (UnimplementedSessionServiceServer) mustEmbedUnimplementedSessionServiceServer() {}
 
-// UnsafeSessionManagementServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SessionManagementServiceServer will
+// UnsafeSessionServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SessionServiceServer will
 // result in compilation errors.
-type UnsafeSessionManagementServiceServer interface {
-	mustEmbedUnimplementedSessionManagementServiceServer()
+type UnsafeSessionServiceServer interface {
+	mustEmbedUnimplementedSessionServiceServer()
 }
 
-func RegisterSessionManagementServiceServer(s grpc.ServiceRegistrar, srv SessionManagementServiceServer) {
-	s.RegisterService(&SessionManagementService_ServiceDesc, srv)
+func RegisterSessionServiceServer(s grpc.ServiceRegistrar, srv SessionServiceServer) {
+	s.RegisterService(&SessionService_ServiceDesc, srv)
 }
 
-func _SessionManagementService_CreateSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SessionService_CreateSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(session.CreateSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionManagementServiceServer).CreateSession(ctx, in)
+		return srv.(SessionServiceServer).CreateSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.SessionManagementService/CreateSession",
+		FullMethod: "/pb.SessionService/CreateSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionManagementServiceServer).CreateSession(ctx, req.(*session.CreateSessionRequest))
+		return srv.(SessionServiceServer).CreateSession(ctx, req.(*session.CreateSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionManagementService_ExtendSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SessionService_ExtendSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(session.ExtendSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionManagementServiceServer).ExtendSession(ctx, in)
+		return srv.(SessionServiceServer).ExtendSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.SessionManagementService/ExtendSession",
+		FullMethod: "/pb.SessionService/ExtendSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionManagementServiceServer).ExtendSession(ctx, req.(*session.ExtendSessionRequest))
+		return srv.(SessionServiceServer).ExtendSession(ctx, req.(*session.ExtendSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionManagementService_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SessionService_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(session.GetSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionManagementServiceServer).GetSession(ctx, in)
+		return srv.(SessionServiceServer).GetSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.SessionManagementService/GetSession",
+		FullMethod: "/pb.SessionService/GetSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionManagementServiceServer).GetSession(ctx, req.(*session.GetSessionRequest))
+		return srv.(SessionServiceServer).GetSession(ctx, req.(*session.GetSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionManagementService_InvalidateSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SessionService_InvalidateSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(session.InvalidateSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionManagementServiceServer).InvalidateSession(ctx, in)
+		return srv.(SessionServiceServer).InvalidateSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.SessionManagementService/InvalidateSession",
+		FullMethod: "/pb.SessionService/InvalidateSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionManagementServiceServer).InvalidateSession(ctx, req.(*session.InvalidateSessionRequest))
+		return srv.(SessionServiceServer).InvalidateSession(ctx, req.(*session.InvalidateSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionManagementService_VerifySession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SessionService_VerifySession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(session.VerifySessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionManagementServiceServer).VerifySession(ctx, in)
+		return srv.(SessionServiceServer).VerifySession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.SessionManagementService/VerifySession",
+		FullMethod: "/pb.SessionService/VerifySession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionManagementServiceServer).VerifySession(ctx, req.(*session.VerifySessionRequest))
+		return srv.(SessionServiceServer).VerifySession(ctx, req.(*session.VerifySessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SessionManagementService_ServiceDesc is the grpc.ServiceDesc for SessionManagementService service.
+// SessionService_ServiceDesc is the grpc.ServiceDesc for SessionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SessionManagementService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.SessionManagementService",
-	HandlerType: (*SessionManagementServiceServer)(nil),
+var SessionService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.SessionService",
+	HandlerType: (*SessionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateSession",
-			Handler:    _SessionManagementService_CreateSession_Handler,
+			Handler:    _SessionService_CreateSession_Handler,
 		},
 		{
 			MethodName: "ExtendSession",
-			Handler:    _SessionManagementService_ExtendSession_Handler,
+			Handler:    _SessionService_ExtendSession_Handler,
 		},
 		{
 			MethodName: "GetSession",
-			Handler:    _SessionManagementService_GetSession_Handler,
+			Handler:    _SessionService_GetSession_Handler,
 		},
 		{
 			MethodName: "InvalidateSession",
-			Handler:    _SessionManagementService_InvalidateSession_Handler,
+			Handler:    _SessionService_InvalidateSession_Handler,
 		},
 		{
 			MethodName: "VerifySession",
-			Handler:    _SessionManagementService_VerifySession_Handler,
+			Handler:    _SessionService_VerifySession_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
