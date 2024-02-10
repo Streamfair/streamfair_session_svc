@@ -32,7 +32,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_SessionManagementService_CreateSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionManagementServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SessionService_CreateSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.CreateSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -45,7 +45,7 @@ func request_SessionManagementService_CreateSession_0(ctx context.Context, marsh
 
 }
 
-func local_request_SessionManagementService_CreateSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionManagementServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SessionService_CreateSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.CreateSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -58,7 +58,7 @@ func local_request_SessionManagementService_CreateSession_0(ctx context.Context,
 
 }
 
-func request_SessionManagementService_ExtendSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionManagementServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SessionService_ExtendSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.ExtendSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -71,7 +71,7 @@ func request_SessionManagementService_ExtendSession_0(ctx context.Context, marsh
 
 }
 
-func local_request_SessionManagementService_ExtendSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionManagementServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SessionService_ExtendSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.ExtendSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -84,7 +84,7 @@ func local_request_SessionManagementService_ExtendSession_0(ctx context.Context,
 
 }
 
-func request_SessionManagementService_GetSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionManagementServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SessionService_GetSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.GetSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -97,7 +97,7 @@ func request_SessionManagementService_GetSession_0(ctx context.Context, marshale
 
 }
 
-func local_request_SessionManagementService_GetSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionManagementServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SessionService_GetSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.GetSessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -111,17 +111,17 @@ func local_request_SessionManagementService_GetSession_0(ctx context.Context, ma
 }
 
 var (
-	filter_SessionManagementService_InvalidateSession_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_SessionService_InvalidateSession_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SessionManagementService_InvalidateSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionManagementServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SessionService_InvalidateSession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.InvalidateSessionRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SessionManagementService_InvalidateSession_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SessionService_InvalidateSession_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -130,14 +130,14 @@ func request_SessionManagementService_InvalidateSession_0(ctx context.Context, m
 
 }
 
-func local_request_SessionManagementService_InvalidateSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionManagementServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SessionService_InvalidateSession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.InvalidateSessionRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SessionManagementService_InvalidateSession_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SessionService_InvalidateSession_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -146,7 +146,7 @@ func local_request_SessionManagementService_InvalidateSession_0(ctx context.Cont
 
 }
 
-func request_SessionManagementService_VerifySession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionManagementServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SessionService_VerifySession_0(ctx context.Context, marshaler runtime.Marshaler, client SessionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.VerifySessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -159,7 +159,7 @@ func request_SessionManagementService_VerifySession_0(ctx context.Context, marsh
 
 }
 
-func local_request_SessionManagementService_VerifySession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionManagementServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SessionService_VerifySession_0(ctx context.Context, marshaler runtime.Marshaler, server SessionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq session.VerifySessionRequest
 	var metadata runtime.ServerMetadata
 
@@ -172,13 +172,13 @@ func local_request_SessionManagementService_VerifySession_0(ctx context.Context,
 
 }
 
-// RegisterSessionManagementServiceHandlerServer registers the http handlers for service SessionManagementService to "mux".
-// UnaryRPC     :call SessionManagementServiceServer directly.
+// RegisterSessionServiceHandlerServer registers the http handlers for service SessionService to "mux".
+// UnaryRPC     :call SessionServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSessionManagementServiceHandlerFromEndpoint instead.
-func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SessionManagementServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSessionServiceHandlerFromEndpoint instead.
+func RegisterSessionServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SessionServiceServer) error {
 
-	mux.Handle("POST", pattern_SessionManagementService_CreateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_CreateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -186,12 +186,12 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionManagementService/CreateSession", runtime.WithHTTPPathPattern("/v1/create_session"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionService/CreateSession", runtime.WithHTTPPathPattern("/v1/create_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SessionManagementService_CreateSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SessionService_CreateSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -199,11 +199,11 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_SessionManagementService_CreateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_CreateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_ExtendSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_ExtendSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -211,12 +211,12 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionManagementService/ExtendSession", runtime.WithHTTPPathPattern("/v1/extend_session"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionService/ExtendSession", runtime.WithHTTPPathPattern("/v1/extend_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SessionManagementService_ExtendSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SessionService_ExtendSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -224,11 +224,11 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_SessionManagementService_ExtendSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_ExtendSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_GetSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_GetSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -236,12 +236,12 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionManagementService/GetSession", runtime.WithHTTPPathPattern("/v1/get_session"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionService/GetSession", runtime.WithHTTPPathPattern("/v1/get_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SessionManagementService_GetSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SessionService_GetSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -249,11 +249,11 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_SessionManagementService_GetSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_GetSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_InvalidateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_InvalidateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -261,12 +261,12 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionManagementService/InvalidateSession", runtime.WithHTTPPathPattern("/v1/invalidate_session"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionService/InvalidateSession", runtime.WithHTTPPathPattern("/v1/invalidate_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SessionManagementService_InvalidateSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SessionService_InvalidateSession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -274,11 +274,11 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_SessionManagementService_InvalidateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_InvalidateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_VerifySession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_VerifySession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -286,12 +286,12 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionManagementService/VerifySession", runtime.WithHTTPPathPattern("/v1/verify_session"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/pb.SessionService/VerifySession", runtime.WithHTTPPathPattern("/v1/verify_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SessionManagementService_VerifySession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SessionService_VerifySession_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -299,16 +299,16 @@ func RegisterSessionManagementServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_SessionManagementService_VerifySession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_VerifySession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterSessionManagementServiceHandlerFromEndpoint is same as RegisterSessionManagementServiceHandler but
+// RegisterSessionServiceHandlerFromEndpoint is same as RegisterSessionServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterSessionManagementServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterSessionServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
@@ -328,129 +328,129 @@ func RegisterSessionManagementServiceHandlerFromEndpoint(ctx context.Context, mu
 		}()
 	}()
 
-	return RegisterSessionManagementServiceHandler(ctx, mux, conn)
+	return RegisterSessionServiceHandler(ctx, mux, conn)
 }
 
-// RegisterSessionManagementServiceHandler registers the http handlers for service SessionManagementService to "mux".
+// RegisterSessionServiceHandler registers the http handlers for service SessionService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterSessionManagementServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterSessionManagementServiceHandlerClient(ctx, mux, NewSessionManagementServiceClient(conn))
+func RegisterSessionServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterSessionServiceHandlerClient(ctx, mux, NewSessionServiceClient(conn))
 }
 
-// RegisterSessionManagementServiceHandlerClient registers the http handlers for service SessionManagementService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SessionManagementServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SessionManagementServiceClient"
+// RegisterSessionServiceHandlerClient registers the http handlers for service SessionService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SessionServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SessionServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "SessionManagementServiceClient" to call the correct interceptors.
-func RegisterSessionManagementServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SessionManagementServiceClient) error {
+// "SessionServiceClient" to call the correct interceptors.
+func RegisterSessionServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SessionServiceClient) error {
 
-	mux.Handle("POST", pattern_SessionManagementService_CreateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_CreateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionManagementService/CreateSession", runtime.WithHTTPPathPattern("/v1/create_session"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionService/CreateSession", runtime.WithHTTPPathPattern("/v1/create_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SessionManagementService_CreateSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SessionService_CreateSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SessionManagementService_CreateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_CreateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_ExtendSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_ExtendSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionManagementService/ExtendSession", runtime.WithHTTPPathPattern("/v1/extend_session"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionService/ExtendSession", runtime.WithHTTPPathPattern("/v1/extend_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SessionManagementService_ExtendSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SessionService_ExtendSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SessionManagementService_ExtendSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_ExtendSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_GetSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_GetSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionManagementService/GetSession", runtime.WithHTTPPathPattern("/v1/get_session"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionService/GetSession", runtime.WithHTTPPathPattern("/v1/get_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SessionManagementService_GetSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SessionService_GetSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SessionManagementService_GetSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_GetSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_InvalidateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_InvalidateSession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionManagementService/InvalidateSession", runtime.WithHTTPPathPattern("/v1/invalidate_session"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionService/InvalidateSession", runtime.WithHTTPPathPattern("/v1/invalidate_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SessionManagementService_InvalidateSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SessionService_InvalidateSession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SessionManagementService_InvalidateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_InvalidateSession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_SessionManagementService_VerifySession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SessionService_VerifySession_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionManagementService/VerifySession", runtime.WithHTTPPathPattern("/v1/verify_session"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/pb.SessionService/VerifySession", runtime.WithHTTPPathPattern("/v1/verify_session"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SessionManagementService_VerifySession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SessionService_VerifySession_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SessionManagementService_VerifySession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SessionService_VerifySession_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -458,25 +458,25 @@ func RegisterSessionManagementServiceHandlerClient(ctx context.Context, mux *run
 }
 
 var (
-	pattern_SessionManagementService_CreateSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "create_session"}, ""))
+	pattern_SessionService_CreateSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "create_session"}, ""))
 
-	pattern_SessionManagementService_ExtendSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "extend_session"}, ""))
+	pattern_SessionService_ExtendSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "extend_session"}, ""))
 
-	pattern_SessionManagementService_GetSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "get_session"}, ""))
+	pattern_SessionService_GetSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "get_session"}, ""))
 
-	pattern_SessionManagementService_InvalidateSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "invalidate_session"}, ""))
+	pattern_SessionService_InvalidateSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "invalidate_session"}, ""))
 
-	pattern_SessionManagementService_VerifySession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "verify_session"}, ""))
+	pattern_SessionService_VerifySession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "verify_session"}, ""))
 )
 
 var (
-	forward_SessionManagementService_CreateSession_0 = runtime.ForwardResponseMessage
+	forward_SessionService_CreateSession_0 = runtime.ForwardResponseMessage
 
-	forward_SessionManagementService_ExtendSession_0 = runtime.ForwardResponseMessage
+	forward_SessionService_ExtendSession_0 = runtime.ForwardResponseMessage
 
-	forward_SessionManagementService_GetSession_0 = runtime.ForwardResponseMessage
+	forward_SessionService_GetSession_0 = runtime.ForwardResponseMessage
 
-	forward_SessionManagementService_InvalidateSession_0 = runtime.ForwardResponseMessage
+	forward_SessionService_InvalidateSession_0 = runtime.ForwardResponseMessage
 
-	forward_SessionManagementService_VerifySession_0 = runtime.ForwardResponseMessage
+	forward_SessionService_VerifySession_0 = runtime.ForwardResponseMessage
 )
