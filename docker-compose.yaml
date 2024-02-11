@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=streamfair_session_service_db
+    ports:
+      - "5435:5432"
+    networks:
+      - db_access_network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9490:9093"
+      - "8480:8083"
+    environment:
+      - DB_SOURCE_SESSION_SERVICE=postgresql://root:secret@db:5432/streamfair_session_service_db?sslmode=disable
+    depends_on:
+      - db
+    networks:
+      - streamfair_internal_network
+      - db_access_network
+    entrypoint: [ "/streamfair_session_svc/wait-for.sh", "db:5432", "--", "/streamfair_session_svc/start.sh" ]
+    command: [ "/streamfair_session_svc/session_svc" ]
+
+networks:
+  db_access_network:
+    driver: bridge
+  streamfair_internal_network:
+    external: true
