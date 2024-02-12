@@ -18,8 +18,8 @@ services:
     ports:
       - "9490:9093"
       - "8480:8083"
-    environment:
-      - DB_SOURCE_SESSION_SERVICE=postgresql://root:secret@db:5432/streamfair_session_service_db?sslmode=disable
+    env_file:
+      - app.env
     depends_on:
       - db
     networks:
