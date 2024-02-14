@@ -7,7 +7,7 @@ import "session/session.proto";
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
 
 message GetSessionRequest {
-    Uuid id = 1;
+    string id = 1;
 }
 
 message GetSessionResponse {

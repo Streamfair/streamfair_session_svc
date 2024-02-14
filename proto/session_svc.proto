@@ -24,28 +24,26 @@ service SessionService {
 
     rpc ExtendSession(ExtendSessionRequest) returns (ExtendSessionResponse) {
         option (google.api.http) = {
-            post: "/v1/extend_session"
+            patch: "/v1/extend_session/{id}"
             body: "*"
         };
     }
 
     rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
         option (google.api.http) = {
-            post: "/v1/get_session"
-            body: "*"
+            get: "/v1/get_session/{id}"
         };
     }
 
     rpc InvalidateSession(InvalidateSessionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/v1/invalidate_session"
+            delete: "/v1/invalidate_session/{id}"
         };
     }
 
     rpc VerifySession(VerifySessionRequest) returns (VerifySessionResponse) {
         option (google.api.http) = {
-            post: "/v1/verify_session"
-            body: "*"
+            get: "/v1/verify_session/{id}"
         };
     }
 }
