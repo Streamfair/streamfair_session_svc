@@ -4,6 +4,7 @@ package pb;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 import "session/rpc_create_session.proto";
 import "session/rpc_extend_session.proto";
@@ -13,6 +14,18 @@ import "session/rpc_verify_session.proto";
 
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb";
 
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+	info: {
+	  title: "Streamfair Session Service";
+	  version: "1.0";
+	  contact: {
+		name: "Streamfair";
+		url: "https://github.com/Streamfair";
+		email: "nelix@posteo.de";
+	  };
+	};
+};
+
 service SessionService {
     // Sessions
     rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {
@@ -20,6 +33,10 @@ service SessionService {
             post: "/v1/create_session"
             body: "*"
         };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
     }
 
     rpc ExtendSession(ExtendSessionRequest) returns (ExtendSessionResponse) {
@@ -27,23 +44,39 @@ service SessionService {
             patch: "/v1/extend_session/{id}"
             body: "*"
         };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
     }
 
     rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
         option (google.api.http) = {
             get: "/v1/get_session/{id}"
         };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
     }
 
     rpc InvalidateSession(InvalidateSessionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/v1/invalidate_session/{id}"
         };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
     }
 
     rpc VerifySession(VerifySessionRequest) returns (VerifySessionResponse) {
         option (google.api.http) = {
             get: "/v1/verify_session/{id}"
         };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
     }
 }
