@@ -1,9 +1,8 @@
 #!/bin/sh
 
+# This file serves as a reference to show how to use ENTRYPOINT in a Dockerfile
+# as well as entrypoint with command in a docker-compose file.
 set -e
-
-echo "Running DB migrations"
-/streamfair_session_svc/migrate -path /streamfair_session_svc/migration -database "$DB_SOURCE_SESSION_SERVICE" -verbose up
 
 echo "Starting Session Service"
 exec "$@"
