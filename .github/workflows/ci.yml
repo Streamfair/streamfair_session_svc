@@ -84,6 +84,11 @@ jobs:
         run: |
           docker compose -f docker-compose.ci.yaml up -d --build
 
+      - name: Show Docker Compose Logs on Failure
+        if: failure()
+        run: |
+          docker compose -f docker-compose.ci.yaml logs
+
       - name: Stop Docker Compose
         run: |
           docker compose -f docker-compose.ci.yaml down
