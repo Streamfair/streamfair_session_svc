@@ -50,7 +50,7 @@ services:
     entrypoint: [ "/streamfair_session_svc/sh/wait-for.sh", "db:5432", "--", "/streamfair_session_svc/sh/start.sh" ]
     command: [ "/streamfair_session_svc/session_svc" ]
     healthcheck:
-      test: ["CMD", "curl", "--fail", "-s", "-k", "https://streamfair_session_service_db:8083/streamfair/v1/healthz"]
+      test: ["CMD", "curl", "--fail", "-s", "-k", "https://streamfair_session_service:8083/streamfair/v1/healthz"]
       interval:     1s
       timeout:      1s
       retries:      30
