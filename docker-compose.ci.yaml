@@ -4,9 +4,10 @@ services:
     image: postgres:16-alpine
     container_name: streamfair_session_service_db
     environment:
-      CONTAINER_ENV: true
-    env_file:
-      - env/db.env
+      CONTAINER_ENV:     true
+      POSTGRES_DB:       ${POSTGRES_DB}
+      POSTGRES_USER:     ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5435:5432"
     networks:
@@ -24,9 +25,19 @@ services:
       dockerfile: Dockerfile
     container_name: streamfair_session_service
     environment:
-      CONTAINER_ENV: true
-    env_file:
-      - env/app.env
+      CONTAINER_ENV:                       true
+      CI:                                  true
+      DB_SOURCE_SESSION_SERVICE:           ${DB_SOURCE_SESSION_SERVICE}
+      MIGRATION_URL:                       ${MIGRATION_URL}
+      HTTP_SERVER_ADDRESS_SESSION_SERVICE: ${HTTP_SERVER_ADDRESS_SESSION_SERVICE}
+      GRPC_SERVER_ADDRESS_SESSION_SERVICE: ${GRPC_SERVER_ADDRESS_SESSION_SERVICE}
+      TOKEN_SYMMETRIC_KEY:                 ${TOKEN_SYMMETRIC_KEY}
+      ACCESS_TOKEN_DURATION:               ${ACCESS_TOKEN_DURATION}
+      REFRESH_TOKEN_DURATION:              ${REFRESH_TOKEN_DURATION}
+      SERVER_NAME:                         ${SERVER_NAME}
+      CERT_PEM:                            ${CERT_PEM}
+      KEY_PEM:                             ${KEY_PEM}
+      CA_CERT_PEM:                         ${CA_CERT_PEM}
     ports:
       - "9490:9093"
       - "8480:8083"
@@ -39,13 +50,11 @@ services:
     entrypoint: [ "/streamfair_session_svc/sh/wait-for.sh", "db:5432", "--", "/streamfair_session_svc/sh/start.sh" ]
     command: [ "/streamfair_session_svc/session_svc" ]
     healthcheck:
-      test: ["CMD", "curl", "--fail", "-s", "-k", "https://streamfair_session_service:8083/streamfair/v1/healthz"]
+      test: ["CMD", "curl", "--fail", "-s", "-k", "https://streamfair_session_service_db:8083/streamfair/v1/healthz"]
       interval:     1s
       timeout:      1s
       retries:      30
       start_period: 5s
-    volumes:
-      - ./ssl:/ssl:ro
 
   # a dummy service which blocks "docker compose up -d" from returning until all services are up & healthy
   app-healthy:
