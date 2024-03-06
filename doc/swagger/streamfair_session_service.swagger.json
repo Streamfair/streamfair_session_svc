@@ -21,7 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/create_session": {
+    "/streamfair/v1/create_session": {
       "post": {
         "summary": "add summary here",
         "description": "add description here",
@@ -55,7 +55,7 @@
         ]
       }
     },
-    "/v1/extend_session/{id}": {
+    "/streamfair/v1/extend_session/{id}": {
       "patch": {
         "summary": "add summary here",
         "description": "add description here",
@@ -95,7 +95,7 @@
         ]
       }
     },
-    "/v1/get_session/{id}": {
+    "/streamfair/v1/get_session/{id}": {
       "get": {
         "summary": "add summary here",
         "description": "add description here",
@@ -127,7 +127,7 @@
         ]
       }
     },
-    "/v1/invalidate_session/{id}": {
+    "/streamfair/v1/invalidate_session/{id}": {
       "delete": {
         "summary": "add summary here",
         "description": "add description here",
@@ -160,7 +160,7 @@
         ]
       }
     },
-    "/v1/verify_session/{id}": {
+    "/streamfair/v1/verify_session/{id}": {
       "get": {
         "summary": "add summary here",
         "description": "add description here",
