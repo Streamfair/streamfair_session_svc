@@ -8,8 +8,8 @@ import "session/session.proto";
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
 
 message CreateSessionRequest {
-    string id = 1;
-    string user_name = 2;
+    string uuid = 1;
+    string username = 2;
     string refresh_token = 3;
     string user_agent = 4;
     string client_ip = 5;

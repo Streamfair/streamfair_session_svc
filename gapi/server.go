@@ -5,14 +5,16 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
-	"github.com/rs/zerolog/log"
 	"net"
 	"net/http"
 	"os"
 
+	"github.com/rs/zerolog/log"
+
 	db "github.com/Streamfair/streamfair_session_svc/db/sqlc"
 	_ "github.com/Streamfair/streamfair_session_svc/doc/statik"
 	"github.com/Streamfair/streamfair_session_svc/pb"
+	"github.com/Streamfair/streamfair_session_svc/token"
 	"github.com/Streamfair/streamfair_session_svc/util"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rakyll/statik/fs"
@@ -32,13 +34,19 @@ type Server struct {
 	grpcServer *grpc.Server
 	httpServer *http.Server
 	pb.UnimplementedSessionServiceServer
-	config    util.Config
-	store     db.Store
-	healthSrv *health.Server
+	config          util.Config
+	store           db.Store
+	healthSrv       *health.Server
+	localTokenMaker token.Maker
 }
 
 // NewServer creates a new gRPC server.
 func NewServer(config util.Config, store db.Store) (*Server, error) {
+	localTokenMaker, err := token.NewLocalPasetoMaker(config.TokenSymmetricKey)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create local token maker: %w", err)
+	}
+
 	tlsConfig, err := LoadTLSConfigWithTrustedCerts(config.CertPem, config.KeyPem, config.CaCertPem)
 	if err != nil {
 		return nil, fmt.Errorf("failed to load TLS config for 'NewServer': %w", err)
@@ -53,6 +61,7 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 		grpcServer: grpc.NewServer(grpc.Creds(creds), grpcLogger),
 		httpServer: &http.Server{},
 		healthSrv:  health.NewServer(),
+		localTokenMaker: localTokenMaker,
 	}
 
 	grpc_health_v1.RegisterHealthServer(server.grpcServer, server.healthSrv)

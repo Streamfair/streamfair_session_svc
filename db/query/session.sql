@@ -1,6 +1,6 @@
 -- name: CreateSession :one
 INSERT INTO "session_svc"."Sessions" (
- id,
+ uuid,
  username,
  refresh_token,
  user_agent,
@@ -14,14 +14,13 @@ RETURNING *;
 
 -- name: GetSession :one
 SELECT * FROM "session_svc"."Sessions"
-WHERE id = $1 LIMIT 1;
+WHERE uuid = $1 LIMIT 1;
 
--- name: VerifySession :one
-SELECT * FROM "session_svc"."Sessions"
-WHERE id = $1 AND is_blocked = false AND expires_at > NOW() LIMIT 1;
+-- name: DeleteSession :exec
+DELETE FROM "session_svc"."Sessions" WHERE uuid = $1;
 
--- name: InvalidateSession :exec
-UPDATE "session_svc"."Sessions" SET is_blocked = true WHERE id = $1;
+-- name: RevokeSession :exec
+UPDATE "session_svc"."Sessions" SET is_blocked = true WHERE uuid = $1;
 
 -- name: ExtendSession :one
-UPDATE "session_svc"."Sessions" SET expires_at = $2 WHERE id = $1 RETURNING *;
+UPDATE "session_svc"."Sessions" SET expires_at = $2 WHERE uuid = $1 RETURNING *;

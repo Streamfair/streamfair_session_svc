@@ -57,6 +57,20 @@ func (mr *MockStoreMockRecorder) CreateSession(ctx, arg any) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateSession", reflect.TypeOf((*MockStore)(nil).CreateSession), ctx, arg)
 }
 
+// DeleteSession mocks base method.
+func (m *MockStore) DeleteSession(ctx context.Context, argUuid uuid.UUID) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteSession", ctx, argUuid)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteSession indicates an expected call of DeleteSession.
+func (mr *MockStoreMockRecorder) DeleteSession(ctx, argUuid any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteSession", reflect.TypeOf((*MockStore)(nil).DeleteSession), ctx, argUuid)
+}
+
 // ExtendSession mocks base method.
 func (m *MockStore) ExtendSession(ctx context.Context, arg db.ExtendSessionParams) (db.SessionSvcSession, error) {
 	m.ctrl.T.Helper()
@@ -73,32 +87,18 @@ func (mr *MockStoreMockRecorder) ExtendSession(ctx, arg any) *gomock.Call {
 }
 
 // GetSession mocks base method.
-func (m *MockStore) GetSession(ctx context.Context, id uuid.UUID) (db.SessionSvcSession, error) {
+func (m *MockStore) GetSession(ctx context.Context, argUuid uuid.UUID) (db.SessionSvcSession, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetSession", ctx, id)
+	ret := m.ctrl.Call(m, "GetSession", ctx, argUuid)
 	ret0, _ := ret[0].(db.SessionSvcSession)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetSession indicates an expected call of GetSession.
-func (mr *MockStoreMockRecorder) GetSession(ctx, id any) *gomock.Call {
+func (mr *MockStoreMockRecorder) GetSession(ctx, argUuid any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSession", reflect.TypeOf((*MockStore)(nil).GetSession), ctx, id)
-}
-
-// InvalidateSession mocks base method.
-func (m *MockStore) InvalidateSession(ctx context.Context, id uuid.UUID) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "InvalidateSession", ctx, id)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// InvalidateSession indicates an expected call of InvalidateSession.
-func (mr *MockStoreMockRecorder) InvalidateSession(ctx, id any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InvalidateSession", reflect.TypeOf((*MockStore)(nil).InvalidateSession), ctx, id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSession", reflect.TypeOf((*MockStore)(nil).GetSession), ctx, argUuid)
 }
 
 // Ping mocks base method.
@@ -115,17 +115,16 @@ func (mr *MockStoreMockRecorder) Ping(ctx, timeout any) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Ping", reflect.TypeOf((*MockStore)(nil).Ping), ctx, timeout)
 }
 
-// VerifySession mocks base method.
-func (m *MockStore) VerifySession(ctx context.Context, id uuid.UUID) (db.SessionSvcSession, error) {
+// RevokeSession mocks base method.
+func (m *MockStore) RevokeSession(ctx context.Context, argUuid uuid.UUID) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "VerifySession", ctx, id)
-	ret0, _ := ret[0].(db.SessionSvcSession)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	ret := m.ctrl.Call(m, "RevokeSession", ctx, argUuid)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-// VerifySession indicates an expected call of VerifySession.
-func (mr *MockStoreMockRecorder) VerifySession(ctx, id any) *gomock.Call {
+// RevokeSession indicates an expected call of RevokeSession.
+func (mr *MockStoreMockRecorder) RevokeSession(ctx, argUuid any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VerifySession", reflect.TypeOf((*MockStore)(nil).VerifySession), ctx, id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RevokeSession", reflect.TypeOf((*MockStore)(nil).RevokeSession), ctx, argUuid)
 }

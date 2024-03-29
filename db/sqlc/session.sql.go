@@ -14,7 +14,7 @@ import (
 
 const createSession = `-- name: CreateSession :one
 INSERT INTO "session_svc"."Sessions" (
- id,
+ uuid,
  username,
  refresh_token,
  user_agent,
@@ -24,11 +24,11 @@ INSERT INTO "session_svc"."Sessions" (
 ) VALUES (
  $1, $2, $3, $4, $5, $6, $7
 )
-RETURNING id, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at
+RETURNING uuid, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at
 `
 
 type CreateSessionParams struct {
-	ID           uuid.UUID `json:"id"`
+	Uuid         uuid.UUID `json:"uuid"`
 	Username     string    `json:"username"`
 	RefreshToken string    `json:"refresh_token"`
 	UserAgent    string    `json:"user_agent"`
@@ -39,7 +39,7 @@ type CreateSessionParams struct {
 
 func (q *Queries) CreateSession(ctx context.Context, arg CreateSessionParams) (SessionSvcSession, error) {
 	row := q.db.QueryRow(ctx, createSession,
-		arg.ID,
+		arg.Uuid,
 		arg.Username,
 		arg.RefreshToken,
 		arg.UserAgent,
@@ -49,7 +49,7 @@ func (q *Queries) CreateSession(ctx context.Context, arg CreateSessionParams) (S
 	)
 	var i SessionSvcSession
 	err := row.Scan(
-		&i.ID,
+		&i.Uuid,
 		&i.Username,
 		&i.RefreshToken,
 		&i.UserAgent,
@@ -61,20 +61,29 @@ func (q *Queries) CreateSession(ctx context.Context, arg CreateSessionParams) (S
 	return i, err
 }
 
+const deleteSession = `-- name: DeleteSession :exec
+DELETE FROM "session_svc"."Sessions" WHERE uuid = $1
+`
+
+func (q *Queries) DeleteSession(ctx context.Context, argUuid uuid.UUID) error {
+	_, err := q.db.Exec(ctx, deleteSession, argUuid)
+	return err
+}
+
 const extendSession = `-- name: ExtendSession :one
-UPDATE "session_svc"."Sessions" SET expires_at = $2 WHERE id = $1 RETURNING id, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at
+UPDATE "session_svc"."Sessions" SET expires_at = $2 WHERE uuid = $1 RETURNING uuid, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at
 `
 
 type ExtendSessionParams struct {
-	ID        uuid.UUID `json:"id"`
+	Uuid      uuid.UUID `json:"uuid"`
 	ExpiresAt time.Time `json:"expires_at"`
 }
 
 func (q *Queries) ExtendSession(ctx context.Context, arg ExtendSessionParams) (SessionSvcSession, error) {
-	row := q.db.QueryRow(ctx, extendSession, arg.ID, arg.ExpiresAt)
+	row := q.db.QueryRow(ctx, extendSession, arg.Uuid, arg.ExpiresAt)
 	var i SessionSvcSession
 	err := row.Scan(
-		&i.ID,
+		&i.Uuid,
 		&i.Username,
 		&i.RefreshToken,
 		&i.UserAgent,
@@ -87,15 +96,15 @@ func (q *Queries) ExtendSession(ctx context.Context, arg ExtendSessionParams) (S
 }
 
 const getSession = `-- name: GetSession :one
-SELECT id, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at FROM "session_svc"."Sessions"
-WHERE id = $1 LIMIT 1
+SELECT uuid, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at FROM "session_svc"."Sessions"
+WHERE uuid = $1 LIMIT 1
 `
 
-func (q *Queries) GetSession(ctx context.Context, id uuid.UUID) (SessionSvcSession, error) {
-	row := q.db.QueryRow(ctx, getSession, id)
+func (q *Queries) GetSession(ctx context.Context, argUuid uuid.UUID) (SessionSvcSession, error) {
+	row := q.db.QueryRow(ctx, getSession, argUuid)
 	var i SessionSvcSession
 	err := row.Scan(
-		&i.ID,
+		&i.Uuid,
 		&i.Username,
 		&i.RefreshToken,
 		&i.UserAgent,
@@ -107,32 +116,11 @@ func (q *Queries) GetSession(ctx context.Context, id uuid.UUID) (SessionSvcSessi
 	return i, err
 }
 
-const invalidateSession = `-- name: InvalidateSession :exec
-UPDATE "session_svc"."Sessions" SET is_blocked = true WHERE id = $1
+const revokeSession = `-- name: RevokeSession :exec
+UPDATE "session_svc"."Sessions" SET is_blocked = true WHERE uuid = $1
 `
 
-func (q *Queries) InvalidateSession(ctx context.Context, id uuid.UUID) error {
-	_, err := q.db.Exec(ctx, invalidateSession, id)
+func (q *Queries) RevokeSession(ctx context.Context, argUuid uuid.UUID) error {
+	_, err := q.db.Exec(ctx, revokeSession, argUuid)
 	return err
-}
-
-const verifySession = `-- name: VerifySession :one
-SELECT id, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at FROM "session_svc"."Sessions"
-WHERE id = $1 AND is_blocked = false AND expires_at > NOW() LIMIT 1
-`
-
-func (q *Queries) VerifySession(ctx context.Context, id uuid.UUID) (SessionSvcSession, error) {
-	row := q.db.QueryRow(ctx, verifySession, id)
-	var i SessionSvcSession
-	err := row.Scan(
-		&i.ID,
-		&i.Username,
-		&i.RefreshToken,
-		&i.UserAgent,
-		&i.ClientIp,
-		&i.IsBlocked,
-		&i.ExpiresAt,
-		&i.CreatedAt,
-	)
-	return i, err
 }

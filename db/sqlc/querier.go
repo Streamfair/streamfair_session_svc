@@ -12,10 +12,10 @@ import (
 
 type Querier interface {
 	CreateSession(ctx context.Context, arg CreateSessionParams) (SessionSvcSession, error)
+	DeleteSession(ctx context.Context, argUuid uuid.UUID) error
 	ExtendSession(ctx context.Context, arg ExtendSessionParams) (SessionSvcSession, error)
-	GetSession(ctx context.Context, id uuid.UUID) (SessionSvcSession, error)
-	InvalidateSession(ctx context.Context, id uuid.UUID) error
-	VerifySession(ctx context.Context, id uuid.UUID) (SessionSvcSession, error)
+	GetSession(ctx context.Context, argUuid uuid.UUID) (SessionSvcSession, error)
+	RevokeSession(ctx context.Context, argUuid uuid.UUID) error
 }
 
 var _ Querier = (*Queries)(nil)

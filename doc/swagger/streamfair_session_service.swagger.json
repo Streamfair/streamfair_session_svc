@@ -55,7 +55,7 @@
         ]
       }
     },
-    "/streamfair/v1/extend_session/{id}": {
+    "/streamfair/v1/extend_session/{uuid}": {
       "patch": {
         "summary": "add summary here",
         "description": "add description here",
@@ -76,7 +76,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "uuid",
             "in": "path",
             "required": true,
             "type": "string"
@@ -95,7 +95,7 @@
         ]
       }
     },
-    "/streamfair/v1/get_session/{id}": {
+    "/streamfair/v1/get_session/{uuid}": {
       "get": {
         "summary": "add summary here",
         "description": "add description here",
@@ -116,7 +116,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "uuid",
             "in": "path",
             "required": true,
             "type": "string"
@@ -127,11 +127,11 @@
         ]
       }
     },
-    "/streamfair/v1/invalidate_session/{id}": {
+    "/streamfair/v1/delete_session/{uuid}": {
       "delete": {
         "summary": "add summary here",
         "description": "add description here",
-        "operationId": "SessionService_InvalidateSession",
+        "operationId": "SessionService_DeleteSession",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -149,7 +149,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "uuid",
             "in": "path",
             "required": true,
             "type": "string"
@@ -160,7 +160,40 @@
         ]
       }
     },
-    "/streamfair/v1/verify_session/{id}": {
+    "/streamfair/v1/revoke_session/{uuid}": {
+      "patch": {
+        "summary": "add summary here",
+        "description": "add description here",
+        "operationId": "SessionService_RevokeSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SessionService"
+        ]
+      }
+    },
+    "/streamfair/v1/verify_session/{uuid}": {
       "get": {
         "summary": "add summary here",
         "description": "add description here",
@@ -181,7 +214,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "uuid",
             "in": "path",
             "required": true,
             "type": "string"
@@ -206,10 +239,10 @@
     "pbCreateSessionRequest": {
       "type": "object",
       "properties": {
-        "id": {
+        "uuid": {
           "type": "string"
         },
-        "userName": {
+        "username": {
           "type": "string"
         },
         "refreshToken": {
@@ -257,7 +290,7 @@
     "pbSession": {
       "type": "object",
       "properties": {
-        "id": {
+        "uuid": {
           "type": "string"
         },
         "username": {

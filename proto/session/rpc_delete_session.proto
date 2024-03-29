@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
+
+message DeleteSessionRequest {
+    string uuid = 1;
+}

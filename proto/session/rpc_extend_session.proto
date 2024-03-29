@@ -8,7 +8,7 @@ import "session/session.proto";
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb/session";
 
 message ExtendSessionRequest {
-    string id = 1;
+    string uuid = 1;
     google.protobuf.Timestamp expires_at = 2;
 }
 

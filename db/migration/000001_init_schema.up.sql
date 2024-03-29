@@ -1,7 +1,7 @@
 CREATE SCHEMA "session_svc";
 
 CREATE TABLE "session_svc"."Sessions" (
-  "id" uuid PRIMARY KEY,
+  "uuid" uuid PRIMARY KEY,
   "username" varchar NOT NULL,
   "refresh_token" varchar NOT NULL,
   "user_agent" varchar NOT NULL,

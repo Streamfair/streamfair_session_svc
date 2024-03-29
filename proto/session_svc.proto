@@ -9,7 +9,8 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 import "session/rpc_create_session.proto";
 import "session/rpc_extend_session.proto";
 import "session/rpc_get_session.proto";
-import "session/rpc_invalidate_session.proto";
+import "session/rpc_revoke_session.proto";
+import "session/rpc_delete_session.proto";
 import "session/rpc_verify_session.proto";
 
 option go_package = "github.com/Streamfair/streamfair_session_svc/pb";
@@ -41,7 +42,7 @@ service SessionService {
 
     rpc ExtendSession(ExtendSessionRequest) returns (ExtendSessionResponse) {
         option (google.api.http) = {
-            patch: "/streamfair/v1/extend_session/{id}"
+            patch: "/streamfair/v1/extend_session/{uuid}"
             body: "*"
         };
 		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -52,7 +53,7 @@ service SessionService {
 
     rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
         option (google.api.http) = {
-            get: "/streamfair/v1/get_session/{id}"
+            get: "/streamfair/v1/get_session/{uuid}"
         };
 		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
 			description: "add description here",
@@ -60,9 +61,19 @@ service SessionService {
 		};
     }
 
-    rpc InvalidateSession(InvalidateSessionRequest) returns (google.protobuf.Empty) {
+    rpc DeleteSession(DeleteSessionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/streamfair/v1/invalidate_session/{id}"
+            delete: "/streamfair/v1/delete_session/{uuid}"
+        };
+		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			description: "add description here",
+			summary: "add summary here",
+		};
+    }
+
+    rpc RevokeSession(RevokeSessionRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/streamfair/v1/revoke_session/{uuid}"
         };
 		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
 			description: "add description here",
@@ -72,7 +83,7 @@ service SessionService {
 
     rpc VerifySession(VerifySessionRequest) returns (VerifySessionResponse) {
         option (google.api.http) = {
-            get: "/streamfair/v1/verify_session/{id}"
+            get: "/streamfair/v1/verify_session/{uuid}"
         };
 		option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
 			description: "add description here",

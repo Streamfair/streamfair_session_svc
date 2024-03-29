@@ -11,7 +11,7 @@ import (
 )
 
 type SessionSvcSession struct {
-	ID           uuid.UUID `json:"id"`
+	Uuid         uuid.UUID `json:"uuid"`
 	Username     string    `json:"username"`
 	RefreshToken string    `json:"refresh_token"`
 	UserAgent    string    `json:"user_agent"`

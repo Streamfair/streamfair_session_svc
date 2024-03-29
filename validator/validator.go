@@ -14,20 +14,41 @@ func ValidateString(value string, minLen int, maxLen int) error {
 	return nil
 }
 
-// Function to validate UserId
-func ValidateUserId(userId int64) error {
-	// Assuming the UserId should be a positive integer
-	if userId <= 0 {
-		return fmt.Errorf("UserId must be a positive integer")
+// Function to validate UUID
+func ValidateUuid(uuid_str string) error {
+	// Assuming the Id should be a positive integer
+	if len(uuid_str) == 0 {
+		return fmt.Errorf("'uuid' must not be empty")
 	}
 	return nil
 }
 
-// ValidateDuration checks if the given string can be parsed as a duration
-func ValidateDuration(durationStr string) error {
-	_, err := time.ParseDuration(durationStr)
-	if err != nil {
-		return fmt.Errorf("invalid duration format: %w", err)
+func ValidateUsername(username string) error {
+	// Should be at least 3 and maximum 24 characters long
+	return ValidateString(username, 3, 24)
+}
+
+func ValidateUserAgent(userAgent string) error {
+	if len(userAgent) == 0 {
+		return fmt.Errorf("'user_agent' must not be empty")
+	}
+	return nil
+}
+
+func ValidateClientIp(clientIp string) error {
+	if len(clientIp) == 0 {
+		return fmt.Errorf("'client_ip' must not be empty")
+	}
+	return nil
+}
+
+func ValidateExpiration(expires_at time.Time) error {
+	if expires_at.IsZero() {
+		return fmt.Errorf("'expires_at' is not a valid time")
+	}
+	
+	if expires_at.Before(time.Now()) {
+		return fmt.Errorf("'refresh_token' already expired")
 	}
 	return nil
 }
