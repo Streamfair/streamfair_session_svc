@@ -1,6 +1,6 @@
-# Streamfair Identity Provider Service
+# Streamfair Session Service
 
-Streamfair (STC) Backend microservice: This service will validate user credentials and issue tokens upon successful authentication
+Streamfair (STC) Backend microservice: This service will create and revoke user sessions
 
 #### Backend in progress! 
 Currently working on: Providing API
