@@ -4,7 +4,7 @@ import (
 	"context"
 
 	db "github.com/Streamfair/streamfair_session_svc/db/sqlc"
-	pb "github.com/Streamfair/streamfair_session_svc/pb/session"
+	pb "github.com/Streamfair/streamfair_session_svc/common_proto/SessionService/pb/session"
 	"github.com/Streamfair/streamfair_session_svc/validator"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
