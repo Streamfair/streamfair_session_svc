@@ -3,7 +3,7 @@ package gapi
 import (
 	"context"
 
-	pb "github.com/Streamfair/streamfair_session_svc/common_proto/SessionService/pb/session"
+	pb "github.com/Streamfair/common_proto/SessionService/pb/session"
 	"github.com/Streamfair/streamfair_session_svc/validator"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
