@@ -20,9 +20,11 @@ INSERT INTO "session_svc"."Sessions" (
  user_agent,
  client_ip,
  is_blocked,
- expires_at
+ expires_at,
+ created_at
 ) VALUES (
- $1, $2, $3, $4, $5, $6, $7
+ $1, $2, $3, $4, $5, $6, $7,
+    CURRENT_TIMESTAMP
 )
 RETURNING uuid, username, refresh_token, user_agent, client_ip, is_blocked, expires_at, created_at
 `
